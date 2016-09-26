@@ -166,14 +166,12 @@ class PlatformioCLI(CommandsPy):
         C['PORT'] = Preferences().get('id_port', '')
         PORT = C['PORT']
 
-        # check if the port is available
-        if(C['CALLBACK'] == 'upload'):
+        # check if the port was selected
+        if(PORT == ''):
             if(not C['PORTSLIST']):
                 self.listSerialPorts()
-
-            if(not any(PORT in x[0] for x in C['PORTSLIST']) or PORT == ''):
-                self.openInThread(self.selectPort)
-                return
+            self.openInThread(self.selectPort)
+            return
 
             # check auth in esp
             MCU = self.getMCU()
