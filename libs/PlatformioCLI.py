@@ -221,6 +221,10 @@ class PlatformioCLI(CommandsPy):
 
         # Call method in a new thread
         callback = getattr(self, C['CALLBACK'])
+
+        # prevent to trigger automatic commands
+        C['CALLBACK'] = None
+        
         self.openInThread(callback)
 
     def initProject(self):
