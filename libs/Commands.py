@@ -141,11 +141,11 @@ class CommandsPy(object):
         try:
             args = " ".join(commands[1:])
         except:
-            args = ' -v'
+            pass
 
         # full verbose mode
-        if(self.verbose and 'run' in options and '-e' in args and 'upload' not in args):
-            args += ' -vvv'
+        if(self.verbose and 'run' in options):
+            args += ' -v'
 
         if(sublime.platform() == 'osx'):
             command = '"%s" -m platformio -f -c sublimetext %s %s 2>&1' % (
