@@ -167,7 +167,7 @@ class PlatformioCLI(CommandsPy):
         PORT = C['PORT']
 
         # check if the port was selected
-        if(PORT == ''):
+        if(PORT == '' and C['CALLBACK'] is 'upload'):
             if(not C['PORTSLIST']):
                 self.listSerialPorts()
             self.openInThread(self.selectPort)
