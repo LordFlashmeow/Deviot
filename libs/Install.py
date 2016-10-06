@@ -526,11 +526,20 @@ class PioInstall(object):
     def installDependencies(self, dependency='all'):
 
         if(dependency == 'zeroconf' or dependency == 'all'):
+            # Install netifaces 0.10.4
+            if(sublime.platform() == 'osx'):
+                cmd = ['"%s"' % (self.python), '-m', 'pip',
+                       'install', 'netifaces==0.10.4']
+            else:
+                executable = os.path.join(self.env_bin_dir, 'pip')
+                cmd = ['"%s"' % (executable), 'install', 'netifaces==0.10.4']
+            Tools.runCommand(cmd)
+
             # Install zeroconf
             if(sublime.platform() == 'osx'):
                 cmd = ['"%s"' % (self.python), '-m', 'pip',
-                       'install', '-U', 'zeroconf']
+                       'install','zeroconf']
             else:
                 executable = os.path.join(self.env_bin_dir, 'pip')
-                cmd = ['"%s"' % (executable), 'install', '-U', 'zeroconf']
+                cmd = ['"%s"' % (executable), 'install', 'zeroconf']
             Tools.runCommand(cmd)
