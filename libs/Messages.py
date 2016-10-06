@@ -107,7 +107,8 @@ class Console:
                 macro = "res://Packages/Default/Delete Line.sublime-macro"
                 self.window.run_command("run_macro_file", {"file": macro})
                 self.window.run_command("run_macro_file", {"file": macro})
-                self.window.run_command("run_macro_file", {"file": macro})
+                if(not Preferences().get('verbose_output', False)):
+                    self.window.run_command("run_macro_file", {"file": macro})
 
             self.panel.run_command("append", {"characters": text})
 
